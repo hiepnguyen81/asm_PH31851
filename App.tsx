@@ -1,118 +1,69 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import ScreenTrangChu from './src/screen/ScreenTrangChu';
+import ScreenSetting from './src/screen/ScreenSetting';
+import SettingPersonalDetails from './src/screen/SettingPersonalDetails';
+import ScreenManHinhChao from './src/screen/ScreenManHinhChao';
+import ScreenDangNhap from './src/screen/ScreenDangNhap';
+import ScreenDangKi from './src/screen/ScreenDangKi';
+import NoteScreen from './src/screen/NoteScreen';
+import GratitudeScreen from './src/screen/GratitudeScreen';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
+function App() {
+  const BottomTabs = () => {
+    return (
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+          headerTintColor: '#0C0F14',
+          tabBarActiveTintColor: '#D17842', // Màu sắc của tab khi nó được chọn
+          tabBarInactiveTintColor: 'gray', // Màu sắc của tab khi nó không được chọn
+          tabBarLabelStyle: {
+            fontSize: 14, // Kích thước văn bản của tab
+            fontWeight: 'bold', // Độ đậm của văn bản của tab
           },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
+          tabBarStyle: {
+            backgroundColor: '#0C0F14', // Màu nền của tab bar
+            borderTopColor: 'transparent', // Màu của viền phía trên tab bar
           },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+        }}>
+        <Tab.Screen name="Trang Chủ" component={ScreenTrangChu} />
+        <Tab.Screen name="Lời biết ơn" component={NoteScreen} />
+        <Tab.Screen name="Cài đặt" component={SettingStack} />
+      </Tab.Navigator>
+    );
+  };
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const SettingStack = () => {
+    return (
+      <Stack.Navigator
+        initialRouteName="Settings"
+        screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Settings" component={ScreenSetting} />
+        <Stack.Screen name="Profile" component={SettingPersonalDetails} />
+        <Stack.Screen name="GratitudeScreen" component={GratitudeScreen} />
+      </Stack.Navigator>
+    );
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Welcome"
+        screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Welcome" component={ScreenManHinhChao} />
+        <Stack.Screen name="ScreenDangNhap" component={ScreenDangNhap} />
+        <Stack.Screen name="DangKi" component={ScreenDangKi} />
+        <Stack.Screen name="BottomTabs" component={BottomTabs} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
