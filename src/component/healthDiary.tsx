@@ -11,7 +11,7 @@ interface Props {
 const HealthDiary: React.FC<Props> = ({title, onPress, uri_img}) => {
   return (
     <Pressable style={styles.wrapper} onPress={onPress}>
-      <Text style={{fontSize: ms(20)}}>{title}</Text>
+      <Text style={{fontSize: ms(20), color: color.white}}>{title}</Text>
       <Image style={styles.img} source={{uri: uri_img}} />
     </Pressable>
   );

@@ -1,6 +1,6 @@
-/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-import {Image, StatusBar, StyleSheet, View} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import {Image, StatusBar, View} from 'react-native';
 import React, {useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 
@@ -12,7 +12,7 @@ const ScreenManHinhChao = () => {
       navigation.replace('ScreenDangNhap');
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [navigation]);
   return (
     <View
       style={{

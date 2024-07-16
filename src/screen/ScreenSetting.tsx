@@ -1,5 +1,5 @@
-/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {
   View,
@@ -195,7 +195,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: ms(48),
     paddingVertical: hs(10),
     borderRadius: ms(12),
-    backgroundColor: color.primaryBlue,
   },
   textButton: {
     ...TS.textLgRegular,
