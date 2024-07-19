@@ -52,20 +52,21 @@ const ScreenTrangChu: React.FC = () => {
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={styles.itemHealthDiary}>
               <HealthDiary
-                title="Huyết Áp"
+                title="Chỉ số huyết áp"
                 uri_img="https://img.icons8.com/?size=100&id=BlKaDTIba9nZ&format=png&color=000000"
               />
               <HealthDiary
-                title="Đường huyết"
-                uri_img="https://img.icons8.com/?size=100&id=BlKaDTIba9nZ&format=png&color=000000"
+                title="Chỉ số đường huyết"
+                uri_img="https://img.icons8.com/color/48/diabetes-monitor.png"
               />
               <HealthDiary
                 title="Cân nặng & chỉ số BMI"
-                uri_img="https://img.icons8.com/?size=100&id=BlKaDTIba9nZ&format=png&color=000000"
-              />
+                uri_img="https://img.icons8.com/external-flat-andi-nur-abdillah/64/external-BMI-dieting-(flat)-flat-andi-nur-abdillah.png"
+                onPress={()=> navigation.navigate('WeightBMIScreen')}
+                />
               <HealthDiary
                 title="Nhắc nhở uống nước"
-                uri_img="https://img.icons8.com/?size=100&id=BlKaDTIba9nZ&format=png&color=000000"
+                uri_img="https://img.icons8.com/cotton/64/energy-sport-drink.png"
               />
             </View>
           </ScrollView>

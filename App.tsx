@@ -11,6 +11,7 @@ import ScreenDangNhap from './src/screen/ScreenDangNhap';
 import ScreenDangKi from './src/screen/ScreenDangKi';
 import NoteScreen from './src/screen/NoteScreen';
 import GratitudeScreen from './src/screen/GratitudeScreen';
+import WeightBMIScreen from './src/screen/Weight-BMI/WeightBMIScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -55,12 +56,13 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Welcome"
+        initialRouteName="BottomTabs" //chọn màn hình khởi đầu
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Welcome" component={ScreenManHinhChao} />
         <Stack.Screen name="ScreenDangNhap" component={ScreenDangNhap} />
         <Stack.Screen name="DangKi" component={ScreenDangKi} />
         <Stack.Screen name="BottomTabs" component={BottomTabs} />
+        <Stack.Screen name="WeightBMIScreen" component={WeightBMIScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
