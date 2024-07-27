@@ -86,6 +86,8 @@ const NoteScreen = () => {
             padding: ms(12),
             rowGap: ms(12),
             marginBottom: ms(10),
+            marginEnd: ms(20),
+            width: ms(350),
           }}>
           <Text
             style={{
@@ -162,6 +164,7 @@ const NoteScreen = () => {
             <View style={{marginTop: 30, flexDirection: 'row'}}>
               <FlatList
               showsHorizontalScrollIndicator={false}
+              horizontal
                 data={list}
                 renderItem={renderItem}
                 keyExtractor={item => item.id.toString()}

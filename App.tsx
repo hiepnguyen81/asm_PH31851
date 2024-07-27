@@ -56,7 +56,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="BottomTabs" //chọn màn hình khởi đầu
+        initialRouteName="Welcome" //chọn màn hình khởi đầu
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Welcome" component={ScreenManHinhChao} />
         <Stack.Screen name="ScreenDangNhap" component={ScreenDangNhap} />

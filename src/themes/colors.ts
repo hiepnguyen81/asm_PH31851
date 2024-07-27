@@ -48,6 +48,7 @@ const Colors = {
   white: '#FFFFFF',
   backgroundItemNoted: 'rgba(37, 42, 50, 1)',
   backgroundScreen: '#0C0F14',
+  backgroundMusic: '#C0C0C0',
 };
 
 export const color = Colors;

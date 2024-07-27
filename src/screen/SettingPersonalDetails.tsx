@@ -18,7 +18,7 @@ const SettingPersonalDetails = () => {
   const navigation = useNavigation();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [Pass, setPass] = useState('');
+  const [Pass, setGioiTinh] = useState('');
 
   return (
     <BaseScreen>
@@ -52,9 +52,8 @@ const SettingPersonalDetails = () => {
         <TextInput
           style={styles.Textinput}
           value={Pass}
-          onChangeText={setPass}
-          placeholder="Mật khẩu"
-          secureTextEntry
+          onChangeText={setGioiTinh}
+          placeholder="Giới tính"
           placeholderTextColor="rgba(130, 130, 130, 1)"
         />
         <AppButton

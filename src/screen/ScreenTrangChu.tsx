@@ -6,6 +6,7 @@ import {TS, color, ms} from '../themes';
 import HealthDiary from '../component/healthDiary';
 import ReminderItem from '../component/reminderItem';
 import {BaseScreen} from '../component/base-screen';
+import Music from './PlayMusic/Music';
 
 interface Product {
   id: string;
@@ -48,6 +49,8 @@ const ScreenTrangChu: React.FC = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <Text style={styles.title}>Trang chủ</Text>
+          <Text style={styles.titleContent}>Nghe nhạc</Text>
+          <Music />
           <Text style={styles.titleContent}>Nhật ký sức khoẻ</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={styles.itemHealthDiary}>
