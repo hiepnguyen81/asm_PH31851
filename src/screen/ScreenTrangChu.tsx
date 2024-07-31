@@ -24,7 +24,7 @@ enum ReduceMotion {
 }
 
 interface AppProps {
-  width: number;
+  width?: number;
 }
 
 const ScreenTrangChu = ({width}: AppProps) => {
