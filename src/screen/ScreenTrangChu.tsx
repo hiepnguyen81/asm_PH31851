@@ -1,43 +1,54 @@
 /* eslint-disable prettier/prettier */
 import {ScrollView, StatusBar, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useNavigation, NavigationProp} from '@react-navigation/native';
 import {TS, color, ms} from '../themes';
 import HealthDiary from '../component/healthDiary';
 import ReminderItem from '../component/reminderItem';
 import {BaseScreen} from '../component/base-screen';
 import Music from './PlayMusic/Music';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faRightLong } from '@fortawesome/free-solid-svg-icons';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  withRepeat,
+  Easing,
+} from 'react-native-reanimated';
 
-interface Product {
-  id: string;
-  img: string;
-  name: string;
-  info: string;
-  price: string;
+enum ReduceMotion {
+  System = 'system',
+  Always = 'always',
+  Never = 'never',
 }
 
-const ScreenTrangChu: React.FC = () => {
-  const navigation = useNavigation<NavigationProp<any>>();
-  const [list, setList] = useState<Product[]>([]);
-  const apiUrl = 'http://192.168.31.100:3000/SanPham';
+interface AppProps {
+  width: number;
+}
 
-  const getList = () => {
-    fetch(apiUrl, {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        setList(data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+const ScreenTrangChu = ({width}: AppProps) => {
+  const navigation = useNavigation<NavigationProp<any>>();
+
+  // animation
+  const sv = useSharedValue(500);
+
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      transform: [{translateX: sv.value}],
+    };
+  });
 
   useEffect(() => {
-    getList();
-  }, []);
+    sv.value = withRepeat(
+      withTiming(-500, {
+        duration: 10000,
+        easing: Easing.linear,
+        reduceMotion: ReduceMotion.System,
+      }),
+      -1, // -1 means it will repeat indefinitely
+    );
+  }, [sv, width]);
 
   return (
     <BaseScreen>
@@ -49,6 +60,12 @@ const ScreenTrangChu: React.FC = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <Text style={styles.title}>Trang chủ</Text>
+          <View style={styles.animationView}>
+            <FontAwesomeIcon icon={faRightLong} color={color.backgroundItem} size={24} style={styles.icon}/>
+            <Animated.Text style={[animatedStyles, styles.animationText]}>
+              Tập thể dục hằng ngày để có 1 sức khoẻ dẻo dai, nâng cao sức lực
+            </Animated.Text>
+          </View>
           <Text style={styles.titleContent}>Nghe nhạc</Text>
           <Music />
           <Text style={styles.titleContent}>Nhật ký sức khoẻ</Text>
@@ -65,8 +82,8 @@ const ScreenTrangChu: React.FC = () => {
               <HealthDiary
                 title="Cân nặng & chỉ số BMI"
                 uri_img="https://img.icons8.com/external-flat-andi-nur-abdillah/64/external-BMI-dieting-(flat)-flat-andi-nur-abdillah.png"
-                onPress={()=> navigation.navigate('WeightBMIScreen')}
-                />
+                onPress={() => navigation.navigate('WeightBMIScreen')}
+              />
               <HealthDiary
                 title="Nhắc nhở uống nước"
                 uri_img="https://img.icons8.com/cotton/64/energy-sport-drink.png"
@@ -116,5 +133,22 @@ const styles = StyleSheet.create({
   itemHealthDiary: {
     columnGap: ms(12),
     flexDirection: 'row',
+  },
+  animationText: {
+    ...TS.textBaseBold,
+    color: color.white,
+    marginHorizontal: ms(10),
+    width: ms(800),
+    overflow: 'hidden',
+  },
+  animationView: {
+    flexDirection: 'row',
+    overflow: 'hidden',
+  },
+  icon: {
+    position : 'absolute',
+    zIndex: 1,
+    backgroundColor: color.backgroundScreen,
+    padding: ms(12),
   },
 });

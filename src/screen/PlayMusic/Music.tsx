@@ -85,15 +85,16 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: color.backgroundMusic,
     borderRadius: ms(20),
-    rowGap: ms(20),
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
+    padding: ms(12),
   },
   nameSong: {
     ...TS.textBaseBold,
     color: color.white,
+    padding: ms(12),
   },
 });
 
