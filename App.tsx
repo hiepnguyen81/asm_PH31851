@@ -56,12 +56,11 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="TrangChu" //chọn màn hình khởi đầu
+        initialRouteName="Welcome" //chọn màn hình khởi đầu
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Welcome" component={ScreenManHinhChao} />
         <Stack.Screen name="ScreenDangNhap" component={ScreenDangNhap} />
         <Stack.Screen name="DangKi" component={ScreenDangKi} />
-        <Stack.Screen name="TrangChu" component={ScreenTrangChu} />
         <Stack.Screen name="BottomTabs" component={BottomTabs} />
         <Stack.Screen name="WeightBMIScreen" component={WeightBMIScreen} />
       </Stack.Navigator>
